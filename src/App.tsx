@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import {Header} from "./components/index";
+import "./App.sass";
 
-const App: React.FC = () => {
+const App: React.FC = ({children}) => {
   return (
-    <div className="App">
-      <h1>
-        hello world!
-      </h1>
-    </div>
+    <Fragment>
+      <Header />
+      {children}
+    </Fragment>
   );
 };
 
