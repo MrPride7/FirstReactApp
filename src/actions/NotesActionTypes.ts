@@ -1,11 +1,11 @@
-import {NewsEntity} from "../entities/NewsEntity";
-import {FETCH_NEWS} from "./NewsActions";
+import {NotesEntity} from "../entities/NoteEntity";
+import {FIND_NOTE, ADD_NOTE} from "./NotesActions";
 
-export interface NewsActionType {
+export interface NotesActionType {
   type: string,
-  news: NewsEntity[]
+  note: NotesEntity
 }
 
-export const fetchNews = (): NewsActionType => {
-  return {type: FETCH_NEWS, news: }
+export const addNote = (note: NotesEntity): NotesActionType => {
+  return {type: ADD_NOTE, note }
 };

@@ -9,6 +9,7 @@ import bem from "../../bem.confing";
 const n = bem("News");
 
 class News extends React.Component<any, any> {
+
   componentDidMount(): void {
     this.props.getNews();
   }

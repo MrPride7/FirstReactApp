@@ -1,7 +1,6 @@
 import React from "react";
 import "./NewsItem.sass";
 import bem from "../../bem.confing";
-import "./NewsItem.sass";
 import {NewsEntity} from "../../entities/NewsEntity";
 
 const ni = bem("NewsItem");
