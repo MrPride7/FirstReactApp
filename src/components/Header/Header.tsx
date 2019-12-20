@@ -10,14 +10,14 @@ const Header = () => {
     <header className={h()}>
       <Link to="/" className={h("logo")}>Improvado</Link>
       <nav className={h("navigation")}>
-        <li>
-          <Link to="/">Home</Link>
+        <li className={h("link-wrap")}>
+          <Link className={h("link")} to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/News">News</Link>
+        <li className={h("link-wrap")}>
+          <Link className={h("link")} to="/news">News</Link>
         </li>
-        <li>
-          <Link to="/Notes">Notes</Link>
+        <li className={h("link-wrap")}>
+          <Link className={h("link")} to="/notes">Notes</Link>
         </li>
       </nav>
     </header>

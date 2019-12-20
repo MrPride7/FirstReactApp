@@ -2,16 +2,28 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 0 20px
-    background-color: #9e0000
+    padding-left: 20px
+    background-color: rgba(158, 0, 0, 1)
     color: white
     height: 100px
     font-size: 2rem
 
     &__navigation
         display: flex
-        justify-content: space-between
-        align-items: center
         width: 20%
         height: 100%
         font-size: 1.2rem
+
+    &__link-wrap
+        width: 100%
+        &:hover
+            background-color: rgba(123, 0, 0, 1)
+
+    &__link
+        display: flex
+        width: 100%
+        height: 100%
+        align-items: center
+        justify-content: center
+        flex-grow: 1
+

@@ -2,7 +2,10 @@ import React, {Fragment} from 'react';
 import {Header} from "./components/index";
 import "./App.sass";
 
-const App: React.FC = ({children}) => {
+interface AppProp {
+  children: React.ReactNode;
+}
+const App: React.FC<AppProp> = ({children}) => {
   return (
     <Fragment>
       <Header />
@@ -10,5 +13,6 @@ const App: React.FC = ({children}) => {
     </Fragment>
   );
 };
+
 
 export default App;
