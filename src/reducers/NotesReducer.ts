@@ -15,7 +15,7 @@ export const notesReducer = (state: StoreStructure = initialState, action: noteA
       return {
         ...state,
         notes: [
-          ...state.notes, // без "downlevelIteration": true в конфиге не работае
+          ...state.notes, // без "downlevelIteration": true в конфиге - не работае
           action.note
         ]
       }

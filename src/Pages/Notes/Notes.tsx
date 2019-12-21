@@ -30,8 +30,7 @@ class Notes extends React.Component<IProps> {
   }
   addNote = () => {
     this.props.onAddNote({title: this.titleRef.current.value, description: this.descrRef.current.value});
-    this.titleRef.current.value = ""; // зачем нужен current? без него не работает,
-    //а с ним нужно в кофиг добавить strictNullChecks: false
+    this.titleRef.current.value = ""; //без "strictNullChecks": false в конфиге - не работат
     this.descrRef.current.value = "";
   };
 
