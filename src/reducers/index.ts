@@ -4,7 +4,7 @@ import {notesReducer} from "./NotesReducer";
 
 const rootReducer = combineReducers({
   newsReducer,
-  notesReducer
+  notesReducer,
 });
 
 export default rootReducer;

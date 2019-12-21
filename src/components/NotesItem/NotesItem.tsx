@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotesItem.sass";
 import bem from "../../bem.confing";
-import {NotesEntity} from "../../entities/NoteEntity";
+import {NotesEntity} from "../../entities/NotesEntity";
 import "./NotesItem.sass";
 
 const ni = bem("NotesItem");

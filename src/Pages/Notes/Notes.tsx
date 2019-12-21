@@ -1,9 +1,9 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import bem from "../../bem.confing";
-import {NotesEntity} from "../../entities/NoteEntity";
+import {NotesEntity} from "../../entities/NotesEntity";
 import "./Notes.sass";
-import {ADD_NOTE} from "../../actions/NotesActions";
+import {addNote, findNote} from "../../actions/NotesActionTypes";
 import NotesItem from "../../components/NotesItem/NotesItem";
 
 const n = bem("Notes");
@@ -19,8 +19,14 @@ class Notes extends React.Component<any, any> {
     this.descrRef.value = "";
   };
 
+  findNote = () => {
+    // @ts-ignore
+    this.props.onFindNote(this.searchRef.value);
+  };
+
   private titleRef: HTMLInputElement | null | undefined; // без undefind не работает, а по другому никак
   private descrRef: HTMLTextAreaElement | null | undefined;
+  private searchRef: HTMLInputElement | null | undefined;
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
@@ -33,6 +39,13 @@ class Notes extends React.Component<any, any> {
 
         <div className={n()}>
           <h2>Your notes</h2>
+
+          <div>
+            <label htmlFor="note-search">Find note</label>
+            <input required id="note-search" type="text" ref={(input) => this.searchRef = input}/>
+            <button onClick={this.findNote} type="button" className={n("btn")}>Find note</button>
+          </div>
+
           <form action="#" className={n("form")}>
             <legend className={n("form-head")}>Add note</legend>
 
@@ -42,7 +55,7 @@ class Notes extends React.Component<any, any> {
             <label htmlFor="note-description">Note description</label>
             <textarea required id="note-description" cols={cols} rows={rows} ref={(input) => this.descrRef = input}/>
 
-            <button onClick={this.addNote} type="button" className={n("add-btn")}>Add note</button>
+            <button onClick={this.addNote} type="button" className={n("btn")}>Add note</button>
           </form>
 
           <div className={n("notes-container")}>
@@ -59,14 +72,17 @@ class Notes extends React.Component<any, any> {
 
 function mapStateToProps(state: any) {
   return {
-    notes: state.notesReducer.notes
+    notes: state.notesReducer.notes.filter((note: NotesEntity) => note.title.includes(state.notesReducer.noteForSearch))
   }
 }
 
 function mapDispatchToProps(dispatch: any) {
   return {
     onAddNote: (note: NotesEntity) => {
-      dispatch({type: ADD_NOTE, note})
+      dispatch(addNote(note))
+    },
+    onFindNote: (note: string) => {
+      dispatch(findNote(note))
     }
   }
 }

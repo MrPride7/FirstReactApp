@@ -1,7 +1,9 @@
 import {NewsEntity} from "./NewsEntity";
-import {NotesEntity} from "./NoteEntity";
+import {NotesEntity} from "./NotesEntity";
 
 export interface StoreStructure {
-  news: NewsEntity[];
-  notes: NewsEntity[];
+  news?: NewsEntity[];
+  notes?: NotesEntity[];
+  noteForSearch?: string
 }
+

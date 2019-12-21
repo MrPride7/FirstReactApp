@@ -3,8 +3,7 @@ import {NewsActionType} from "../actions/NewsActionTypes";
 import {FETCH_NEWS} from "../actions/NewsActions";
 
 const initialState: StoreStructure = {
-  news: [],
-  notes: []
+  news: []
 };
 
 export const newsReducer = (state: StoreStructure = initialState, action: NewsActionType ) => {
