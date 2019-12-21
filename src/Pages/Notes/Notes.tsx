@@ -4,29 +4,41 @@ import bem from "../../bem.confing";
 import {NotesEntity} from "../../entities/NotesEntity";
 import "./Notes.sass";
 import {addNote, findNote} from "../../actions/NotesActionTypes";
+
 import NotesItem from "../../components/NotesItem/NotesItem";
 
 const n = bem("Notes");
 
-class Notes extends React.Component<any, any> {
+interface IProps {
+  notes: NotesEntity[],
+  noteForSearch: string,
+  onAddNote(note: NotesEntity): any,
+  onFindNote(note: string): any
+}
 
+class Notes extends React.Component<IProps> {
+
+  private readonly titleRef: React.RefObject<HTMLInputElement>;
+  private readonly descrRef: React.RefObject<HTMLTextAreaElement>;
+  private readonly searchRef: React.RefObject<HTMLInputElement>;
+
+  constructor(props: IProps) {
+    super(props);
+    this.titleRef = React.createRef();
+    this.descrRef = React.createRef();
+    this.searchRef = React.createRef();
+  }
   addNote = () => {
-    // @ts-ignore
-    this.props.onAddNote({title: this.titleRef.value, description: this.descrRef.value});
-    // @ts-ignore
-    this.titleRef.value = "";
-    // @ts-ignore
-    this.descrRef.value = "";
+    this.props.onAddNote({title: this.titleRef.current.value, description: this.descrRef.current.value});
+    this.titleRef.current.value = ""; // зачем нужен current? без него не работает,
+    //а с ним нужно в кофиг добавить strictNullChecks: false
+    this.descrRef.current.value = "";
   };
 
   findNote = () => {
-    // @ts-ignore
-    this.props.onFindNote(this.searchRef.value);
+    this.props.onFindNote(this.searchRef.current.value);
   };
 
-  private titleRef: HTMLInputElement | null | undefined; // без undefind не работает, а по другому никак
-  private descrRef: HTMLTextAreaElement | null | undefined;
-  private searchRef: HTMLInputElement | null | undefined;
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
@@ -42,7 +54,7 @@ class Notes extends React.Component<any, any> {
 
           <div>
             <label htmlFor="note-search">Find note</label>
-            <input required id="note-search" type="text" ref={(input) => this.searchRef = input}/>
+            <input required id="note-search" type="text" ref={this.searchRef }/>
             <button onClick={this.findNote} type="button" className={n("btn")}>Find note</button>
           </div>
 
@@ -50,10 +62,10 @@ class Notes extends React.Component<any, any> {
             <legend className={n("form-head")}>Add note</legend>
 
             <label htmlFor="note-title">Note title</label>
-            <input required id="note-title" type="text" ref={(input) => this.titleRef = input}/>
+            <input required id="note-title" type="text" ref={this.titleRef}/>
 
             <label htmlFor="note-description">Note description</label>
-            <textarea required id="note-description" cols={cols} rows={rows} ref={(input) => this.descrRef = input}/>
+            <textarea required id="note-description" cols={cols} rows={rows} ref={this.descrRef}/>
 
             <button onClick={this.addNote} type="button" className={n("btn")}>Add note</button>
           </form>

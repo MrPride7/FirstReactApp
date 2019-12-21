@@ -1,5 +1,5 @@
 import {StoreStructure} from "../entities/StoreStructure";
-import {NotesActionType} from "../actions/NotesActionTypes";
+import {AddNoteActionType, FindNoteActionType} from "../actions/NotesActionTypes";
 import {ADD_NOTE, FIND_NOTE} from "../actions/NotesActions";
 
 const initialState: StoreStructure = {
@@ -7,16 +7,18 @@ const initialState: StoreStructure = {
   noteForSearch: ""
 };
 
-export const notesReducer = (state: StoreStructure = initialState, action: NotesActionType ) => {
+type noteActionType = AddNoteActionType | FindNoteActionType;
+
+export const notesReducer = (state: StoreStructure = initialState, action: noteActionType ): StoreStructure => {
   switch (action.type) {
     case ADD_NOTE: {
       return {
         ...state,
         notes: [
-          ...state.notes, // без этого "downlevelIteration": true в конфиге не работае
+          ...state.notes, // без "downlevelIteration": true в конфиге не работае
           action.note
         ]
-      } as StoreStructure
+      }
     }
     case FIND_NOTE: {
       return {

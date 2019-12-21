@@ -22,12 +22,12 @@ const mockApiData: NewsEntity[] = [
   }
 ];
 
-export interface NewsActionType {
-  type: string,
+export interface FetchNewsActionType {
+  type: typeof FETCH_NEWS,
   news: NewsEntity[]
 }
 
-export const fetchNews = (): NewsActionType => {
+export const fetchNews = (): FetchNewsActionType => {
   return {type: FETCH_NEWS, news: mockApiData}
 };
 

@@ -8,7 +8,12 @@ import bem from "../../bem.confing";
 
 const n = bem("News");
 
-class News extends React.Component<any, any> {
+interface IProps {
+  news: NewsEntity[],
+  getNews(): any
+}
+
+class News extends React.Component<IProps> {
 
   componentDidMount(): void {
     this.props.getNews();
